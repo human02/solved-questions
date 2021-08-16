@@ -27,4 +27,16 @@ Constraints:
 Each element in the array appears twice except for one element which appears only once.
  """
 
- 
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+        l={}
+        for i in nums:
+            if i in l:
+                l[i]+=1
+            else:l[i]=1
+            
+        print(l)
+        for i in l:
+            if(l[i]==1):
+                return i
+            
