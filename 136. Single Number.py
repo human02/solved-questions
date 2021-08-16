@@ -28,7 +28,7 @@ Each element in the array appears twice except for one element which appears onl
  """
 
 class Solution:
-    def singleNumber(self, nums: List[int]) -> int:
+    def singleNumber_hashTable(self, nums: List[int]) -> int:
         l={}
         for i in nums:
             if i in l:
@@ -39,4 +39,28 @@ class Solution:
         for i in l:
             if(l[i]==1):
                 return i
+
+
+class Solution:
+    def singleNumber_math(self, nums: List[int]) -> int:
+        # The idea is -> 2*(a+b+c)−(a+a+b+b+c)=c
+        return 2 * sum(set(nums)) - sum(nums)
+
+class Solution:
+    """
+    Concept
+
+    If we take XOR of zero and some bit, it will return that bit
+    a XOR 0 = a⊕0 = a
+    
+    If we take XOR of two same bits, it will return 0
+    a XOR a = a⊕a = 0
+    a XOR b XOR a = (a XOR a) XOR b = 0 XOR b = a⊕b⊕a = (a⊕a)⊕b = 0⊕b = b
+
+    """
+    def singleNumber_bitManupilation(self, nums: List[int]) -> int:
+        a = 0
+        for i in nums:
+            a ^= i
+        return a
             
