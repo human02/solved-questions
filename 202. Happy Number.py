@@ -63,3 +63,20 @@ def isHappy_FloydCycle(self, n: int) -> bool:
         fast_runner = get_next(get_next(fast_runner))
     return fast_runner == 1
             
+# This method is based of the mathematical analysis that leads to only certain numbers that lead a cycle.
+# Refer Leetcode Solution to get an elaborate explanation of the solution.
+def isHappy_hardCodedCycle(self, n: int) -> bool:
+
+    cycle_members = {4, 16, 37, 58, 89, 145, 42, 20}
+
+    def get_next(number):
+        total_sum = 0
+        while number > 0:
+            number, digit = divmod(number, 10)
+            total_sum += digit ** 2
+        return total_sum
+
+    while n != 1 and n not in cycle_members:
+        n = get_next(n)
+
+    return n == 1
